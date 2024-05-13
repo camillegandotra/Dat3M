@@ -1,0 +1,31 @@
+#include <stdatomic.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+#define mo_lock memory_order_acquire
+#define mo_unlock memory_order_release
+
+typedef struct petersonslock {
+    _Atomic int victim; 
+    _Atomic int* flag; 
+} petersonslock;
+
+void petersonslock_init(petersonslock* P, int num_threads) {
+    P->flag = (_Atomic int*)malloc(sizeof(_Atomic int) * num_threads);
+     for (int i = 0; i < num_threads; i++) {
+        atomic_init(&P->flag[i], 0);
+    }
+    atomic_init(&P->victim, -1);
+}
+
+void petersonslock_acquire(petersonslock* P, int thread_id) {
+    int other_thread = thread_id == 0 ? 1 : 0;
+    atomic_store_explicit(&P->flag[thread_id], 1, mo_unlock);
+    atomic_store_explicit(&P->victim, thread_id, memory_order_seq_cst);
+    while ((atomic_load_explicit(&P->victim, memory_order_seq_cst) == thread_id) &&
+        (atomic_load_explicit(&P->flag[other_thread], mo_lock) == 1)) {}
+}
+
+void petersonslock_release(petersonslock* P, int thread_id) {
+    atomic_store_explicit(&P->flag[thread_id], 0, mo_unlock);
+}
