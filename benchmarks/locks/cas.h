@@ -3,8 +3,17 @@
 #include <stdlib.h>
 #include <dat3m.h>
 
+#ifdef ACQ2RX
+#define mo_lock memory_order_relaxed
+#else
 #define mo_lock memory_order_acquire
+#endif
+
+#ifdef REL2RX
+#define mo_unlock memory_order_relaxed
+#else
 #define mo_unlock memory_order_release
+#endif
 
 typedef struct caslock {
     _Atomic bool flag; 
