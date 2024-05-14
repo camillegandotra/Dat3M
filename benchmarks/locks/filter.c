@@ -1,10 +1,13 @@
 #include <pthread.h>
-#include "filter.h"
 #include <assert.h>
 
 #ifndef NTHREADS
 #define NTHREADS 2
 #endif
+
+// #define ACQ2RX
+// #define REL2RX
+#include "filter.h"
 
 // int shared;
 filterlock lock;

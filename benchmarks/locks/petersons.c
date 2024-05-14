@@ -1,6 +1,9 @@
 #include <pthread.h>
-#include "petersons.h"
 #include <assert.h>
+
+// #define ACQ2RX
+// #define REL2RX
+#include "petersons.h"
 
 #ifndef NTHREADS
 #define NTHREADS 2

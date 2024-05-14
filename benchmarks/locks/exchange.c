@@ -1,6 +1,9 @@
 #include <pthread.h>
-#include "exchange.h"
 #include <assert.h>
+
+// #define ACQ2RX
+// #define REL2RX
+#include "exchange.h"
 
 #ifndef NTHREADS
 #define NTHREADS 2

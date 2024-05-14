@@ -1,11 +1,15 @@
 #include <pthread.h>
-#include "bakery.h"
 #include <assert.h>
-
 #include <stdio.h>
+
+// #define ACQ2RX
+// #define REL2RX
+#include "bakery.h"
+
 #ifndef NTHREADS
 #define NTHREADS 2
 #endif
+
 
 // int shared;
 bakerylock lock;
