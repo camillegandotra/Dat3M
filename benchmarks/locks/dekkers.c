@@ -5,9 +5,7 @@
 // #define REL2RX
 #include "dekkers.h"
 
-#ifndef NTHREADS
 #define NTHREADS 2
-#endif
 
 // int shared;
 dekkerslock lock;

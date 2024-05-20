@@ -5,9 +5,7 @@
 // #define REL2RX
 #include "petersons.h"
 
-#ifndef NTHREADS
 #define NTHREADS 2
-#endif
 
 // int shared;
 petersonslock lock;

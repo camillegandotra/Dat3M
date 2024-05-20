@@ -10,24 +10,35 @@
 #define NTHREADS 2
 #endif
 
+#define LL_LITMUS
 
 // int shared;
 bakerylock lock;
 _Atomic int sum = 0;
-int temp;
-
+_Atomic int shared = -1;
 
 void *thread_n(void *arg)
 {
     intptr_t index = ((intptr_t) arg);
 
     bakerylock_acquire(&lock, index);
-    // shared = index;
-    // int r = shared;
-    // assert(r == index);
-    temp = atomic_load(&sum);
-    atomic_store(&sum, temp + 1);
+    
+    #ifdef LS_LITMUS
+        int temp = atomic_load(&sum);
+        atomic_store(&sum, temp + 1);
+    #elif defined(SL_LITMUS)
+        atomic_store(&shared, index);
+        int temp = atomic_load(&shared);
+        assert(temp == index);
+    #elif defined(LL_LITMUS)
+        int temp1 = atomic_load(&shared);
+        int temp2 = atomic_load(&shared);
+        assert(temp1 == temp2);
+        atomic_store(&shared, index);
+    #endif
+
     bakerylock_release(&lock, index);
+    
     return NULL;
 }
 
@@ -43,8 +54,10 @@ int main()
     for (int i = 0; i < NTHREADS; i++)
         pthread_join(t[i], 0);
     
-    assert(sum == NTHREADS);
-    printf("done\n");
+
+    #ifdef LS_LITMUS
+        assert(sum == NTHREADS);    
+    #endif
 
     return 0;
 }
