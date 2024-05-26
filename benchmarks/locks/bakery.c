@@ -10,7 +10,7 @@
 #define NTHREADS 2
 #endif
 
-#define LL_LITMUS
+#define LS_LITMUS
 
 // int shared;
 bakerylock lock;

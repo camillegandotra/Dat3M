@@ -35,7 +35,7 @@ void filterlock_acquire(filterlock* F, int thread_id) {
         atomic_store_explicit(&F->victim[i], thread_id, memory_order_seq_cst);
         for (int k = 0; k < F->total_threads; k += 1) {
             while (k != thread_id && (atomic_load_explicit(&F->level[k], memory_order_seq_cst) >= i)
-                && (atomic_load_explicit(&F->victim[i], memory_order_seq_cst) == thread_id)) {}
+                && (atomic_load_explicit(&F->victim[i], mo_lock) == thread_id)) {}
         }
     }
 }

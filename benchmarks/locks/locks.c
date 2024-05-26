@@ -2,10 +2,19 @@
 #include <assert.h>
 #include <stdio.h>
 
-#define ACQ2RX
-#define REL2RX
+// #define ACQ2RX
+// #define REL2RX
+
+// #define LS_LITMUS
 #define SL_LITMUS
-#define BAKERY
+// #define LL_LITMUS
+
+// #define BAKERY
+// #define CAS
+// #define DEKKERS
+// #define EXCHANGE
+// #define FILTER
+#define PETERSONS
 
 #include "bakery.h"
 #include "cas.h"
@@ -41,7 +50,7 @@ typedef dekkerslock lock_t;
 #elif defined(EXCHANGE)
 typedef exchangelock lock_t;
 #define lock_init(lock, nthreads) exchangelock_init((lock))
-#define lock_acquire(lock, id) exhangelock_acquire((lock))
+#define lock_acquire(lock, id) exchangelock_acquire((lock))
 #define lock_release(lock, id) exchangelock_release((lock))
 #elif defined(FILTER)
 typedef filterlock lock_t;

@@ -42,7 +42,7 @@ void bakerylock_acquire(bakerylock* B, int thread_id) {
     atomic_store_explicit(&B->label[thread_id], current_max + 1, memory_order_seq_cst);
 
     for (int k = 0; k < B->total_threads; k++) {
-        while (k != thread_id && atomic_load_explicit(&B->flag[k], mo_lock) && 
+        while (k != thread_id && atomic_load_explicit(&B->flag[k], memory_order_seq_cst) && 
                (atomic_load_explicit(&B->label[k], mo_lock) < atomic_load_explicit(&B->label[thread_id], mo_lock) ||
                 (atomic_load_explicit(&B->label[k], mo_lock) == atomic_load_explicit(&B->label[thread_id], mo_lock) && k < thread_id))) {
         }

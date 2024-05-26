@@ -1,0 +1,41 @@
+{
+    "configurations": [
+      {
+        "lock": "BAKERY",
+        "test": "SL_LITMUS",
+        "model": "aarch64",
+        "relaxed_options": []
+      },
+      {
+        "lock": "CAS",
+        "test": "SL_LITMUS",
+        "model": "aarch64",
+        "relaxed_options": []
+      },
+      {
+        "lock": "DEKKERS",
+        "test": "SL_LITMUS",
+        "model": "aarch64",
+        "relaxed_options": []
+      },
+      {
+        "lock": "EXCHANGE",
+        "test": "SL_LITMUS",
+        "model": "aarch64",
+        "relaxed_options": []
+      },
+      {
+        "lock": "FILTER",
+        "test": "SL_LITMUS",
+        "model": "aarch64",
+        "relaxed_options": []
+      },
+      {
+        "lock": "PETERSONS",
+        "test": "SL_LITMUS",
+        "model": "aarch64",
+        "relaxed_options": []
+      }  
+    ]
+  }
+  

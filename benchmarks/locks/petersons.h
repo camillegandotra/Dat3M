@@ -29,10 +29,10 @@ void petersonslock_init(petersonslock* P, int num_threads) {
 
 void petersonslock_acquire(petersonslock* P, int thread_id) {
     int other_thread = thread_id == 0 ? 1 : 0;
-    atomic_store_explicit(&P->flag[thread_id], 1, mo_unlock);
+    atomic_store_explicit(&P->flag[thread_id], 1, memory_order_seq_cst);
     atomic_store_explicit(&P->victim, thread_id, memory_order_seq_cst);
-    while ((atomic_load_explicit(&P->victim, memory_order_seq_cst) == thread_id) &&
-        (atomic_load_explicit(&P->flag[other_thread], mo_lock) == 1)) {}
+    while ((atomic_load_explicit(&P->victim, mo_lock) == thread_id) &&
+        (atomic_load_explicit(&P->flag[other_thread], memory_order_seq_cst) == 1)) {}
 }
 
 void petersonslock_release(petersonslock* P, int thread_id) {

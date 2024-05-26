@@ -3,6 +3,13 @@
         "pthread.h": "c",
         "stdbool.h": "c",
         "stdlib.h": "c",
-        "dat3m.h": "c"
+        "dat3m.h": "c",
+        "atomic": "c",
+        "variant": "c",
+        "chrono": "c",
+        "exchange.h": "c",
+        "__mutex_base": "c",
+        "mutex": "c",
+        "petersons.h": "c"
     }
 }
