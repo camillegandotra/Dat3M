@@ -2,19 +2,19 @@
 #include <assert.h>
 #include <stdio.h>
 
-// #define ACQ2RX
-// #define REL2RX
+#define ACQ2RX
+#define REL2RX
 
-// #define LS_LITMUS
-#define SL_LITMUS
+#define LS_LITMUS
+// #define SL_LITMUS
 // #define LL_LITMUS
 
 // #define BAKERY
 // #define CAS
 // #define DEKKERS
-// #define EXCHANGE
+#define EXCHANGE
 // #define FILTER
-#define PETERSONS
+// #define PETERSONS
 
 #include "bakery.h"
 #include "cas.h"
