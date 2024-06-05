@@ -17,7 +17,7 @@ cgandotr@ucsc.edu
 
 - *locks.sh*
 
-Run in ``benchmarks/locks/` directory.
+Run in `benchmarks/locks/` directory.
 
 ```
 ./locks.sh [OPTIONS]
