@@ -1,4 +1,4 @@
-## UCSC CHPL Spring 2024 
+## UCSC CHPL Spring 2024 - Weak Memory Models
 
 ### Description
 
@@ -8,10 +8,10 @@ Created a script `benchmarks/locks/locks.sh` that uses `benchmarks/locks/config.
 
 Created Sense Reversal Barrier. In the middle of testing for weak memory patterns when relaxing different instructions, note that dartagnan does not allow yielding `benchmarks/locks/SROBarrier.c`.
 
-### Author
+### Contributor
 
-*Created By:* Camille Gandotra  
-*Email:* cgandotr@ucsc.edu
+Camille Gandotra  
+cgandotr@ucsc.edu
 
 ### Usage
 
